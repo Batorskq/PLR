@@ -21,11 +21,11 @@ All required JSONL files for MR, NEWS, SST5, TREC, SUBJ, GSM8K, DeepMath, and Ma
 
 Only the PLR methods below are exposed:
 
-| Method | Update | 
-| --- | --- | --- |
-| `method_pl_ce` | EMA-style cross-entropy update | 
-| `pl_ce_mle` | Maximum-likelihood update | 
-| `mixture_pl_4` | Mixture of 4 PL distributions |
+| Method | Update |
+| --- | --- |
+| `method_pl_ce` | EMA-style cross-entropy update |
+| `pl_ce_mle` | Maximum-likelihood update |
+| `mixture_pl_4` | Mixture of 4 Plackett-Luce distributions |
 
 Run one method:
 
@@ -112,22 +112,3 @@ python gsm8k.py --model-path "$MODEL" --methods method_pl_ce --k 16 --subset 200
 python deepmath.py --model-path "$MODEL" --methods pl_ce_mle --k 16 --subset 2000 --mle-steps 50 --mle-lr 0.5
 python math500.py --model-path "$MODEL" --methods mixture_pl_4 --k 16 --subset 2000 --mle-steps 50 --mle-lr 0.5
 ```
-
-## Generated Files
-
-Result files are created locally and ignored by git:
-
-| Script family | Output path |
-| --- | --- |
-| MR, NEWS, SST5, TREC, SUBJ | `results_*` |
-| GSM8K, DeepMath, Math500 | `results/` |
-
-Use `make clean` to remove generated outputs and Python caches.
-
-## Checks
-
-```bash
-make check
-```
-
-This compiles all Python entry points and utility modules.
