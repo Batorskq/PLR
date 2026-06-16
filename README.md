@@ -12,7 +12,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 
 export MODEL=/path/to/instruct-model
-./scripts/run_plr.sh mr method_pl_ce "$MODEL" --k 16 --subset 1000 --seed 1,2,3,4,5
+./scripts/run_plr.sh mr method_pl_ce "$MODEL" --k 16 --subset 2000 --seed 1,2,3,4,5
 ```
 
 All required JSONL files for MR, NEWS, SST5, TREC, SUBJ, GSM8K, DeepMath, and Math500 are already under `dataset/`; there is no download step.
@@ -21,22 +21,22 @@ All required JSONL files for MR, NEWS, SST5, TREC, SUBJ, GSM8K, DeepMath, and Ma
 
 Only the PLR methods below are exposed:
 
-| Method | Update | Use |
+| Method | Update | 
 | --- | --- | --- |
-| `method_pl_ce` | EMA-style cross-entropy update | Fast PL update from elite permutations |
-| `pl_ce_mle` | Maximum-likelihood update | Direct PL fit on elite permutations |
-| `mixture_pl_4` | Mixture of 4 PL distributions | Multi-component order distribution |
+| `method_pl_ce` | EMA-style cross-entropy update | 
+| `pl_ce_mle` | Maximum-likelihood update | 
+| `mixture_pl_4` | Mixture of 4 PL distributions |
 
 Run one method:
 
 ```bash
-./scripts/run_plr.sh subj pl_ce_mle "$MODEL" --k 16 --subset 1000 --seed 1,2,3,4,5
+./scripts/run_plr.sh subj pl_ce_mle "$MODEL" --k 16 --subset 2000 --seed 1,2,3,4,5
 ```
 
 Run all three methods for one task:
 
 ```bash
-./scripts/run_all_methods.sh trec "$MODEL" --k 16 --subset 1000 --seed 1,2,3,4,5
+./scripts/run_all_methods.sh trec "$MODEL" --k 16 --subset 2000 --seed 1,2,3,4,5
 ```
 
 ## Task Scripts
@@ -65,7 +65,7 @@ python mr.py \
   --model-path "$MODEL" \
   --methods method_pl_ce \
   --k 16 \
-  --subset 1000 \
+  --subset 2000 \
   --seed 1,2,3,4,5 \
   --ce-iters 15 \
   --ce-batch 15 \
@@ -80,7 +80,7 @@ python mr.py \
   --model-path "$MODEL" \
   --methods pl_ce_mle \
   --k 16 \
-  --subset 1000 \
+  --subset 2000 \
   --seed 1,2,3,4,5 \
   --ce-iters 15 \
   --ce-batch 15 \
@@ -96,7 +96,7 @@ python mr.py \
   --model-path "$MODEL" \
   --methods mixture_pl_4 \
   --k 16 \
-  --subset 1000 \
+  --subset 2000 \
   --seed 1,2,3,4,5 \
   --ce-iters 15 \
   --ce-batch 15 \
@@ -108,9 +108,9 @@ python mr.py \
 Generation tasks use the same method names with shorter optimizer flags:
 
 ```bash
-python gsm8k.py --model-path "$MODEL" --methods method_pl_ce --k 16 --subset 1000
-python deepmath.py --model-path "$MODEL" --methods pl_ce_mle --k 16 --subset 1000 --mle-steps 50 --mle-lr 0.5
-python math500.py --model-path "$MODEL" --methods mixture_pl_4 --k 16 --subset 1000 --mle-steps 50 --mle-lr 0.5
+python gsm8k.py --model-path "$MODEL" --methods method_pl_ce --k 16 --subset 2000
+python deepmath.py --model-path "$MODEL" --methods pl_ce_mle --k 16 --subset 2000 --mle-steps 50 --mle-lr 0.5
+python math500.py --model-path "$MODEL" --methods mixture_pl_4 --k 16 --subset 2000 --mle-steps 50 --mle-lr 0.5
 ```
 
 ## Generated Files
