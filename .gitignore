@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environments
+.venv/
+venv/
+env/
+
+# Generated outputs
+results/
+results*/
+fair_comparison/
+*.jsonl.tmp
+
+# Cluster and run logs
+*.log
+*.out
+*.err
+*.e[0-9]*
+*.o[0-9]*
+nevermind*
+gsm_l_*
+
+# Local editor and OS files
+.DS_Store
+.idea/
+.vscode/
+
